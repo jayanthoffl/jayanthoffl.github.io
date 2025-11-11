@@ -157,7 +157,7 @@ export default function ContactPage() {
             <div className="border-2 border-green-900 bg-green-950/20 p-6 scroll-reveal" style={{ animationDelay: '0.4s' }}>
               <h3 className="text-xl font-bold text-green-400 mb-4 font-mono">RESEARCH_INTERESTS</h3>
               <div className="flex flex-wrap gap-2">
-                {['Quantum Computing', 'AI/ML', 'Cloud Tech', 'Web3', 'CyberSec', 'IoT'].map((interest, i) => (
+                {['Quantum Computing', 'AI/ML', 'Cloud Tech', 'Java Dev', 'Quantum ML'].map((interest, i) => (
                   <span
                     key={i}
                     className="px-3 py-1 bg-green-950/50 border border-green-600 text-green-400 font-mono text-xs"
