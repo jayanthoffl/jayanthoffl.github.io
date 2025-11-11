@@ -353,18 +353,18 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         }
 
         @keyframes led-flicker {
-          0%, 18%, 22%, 24%, 26%, 32%, 34%, 36%, 42%, 44%, 46%, 72%, 74%, 76%, 100% {
+          0%, 94%, 100% {
             opacity: 1;
             text-shadow:
               0 0 10px rgba(34, 197, 94, 0.8),
               0 0 20px rgba(34, 197, 94, 0.6),
               0 0 30px rgba(34, 197, 94, 0.4);
           }
-          20%, 23%, 25%, 33%, 35%, 43%, 45%, 73%, 75% {
-            opacity: 0.4;
-            text-shadow: 0 0 5px rgba(34, 197, 94, 0.3);
+          94.5%, 95.5% {
+            opacity: 0.3;
+            text-shadow: 0 0 5px rgba(34, 197, 94, 0.2);
           }
-          21%, 24%, 34%, 44%, 74% {
+          95% {
             opacity: 0.1;
             text-shadow: none;
           }
@@ -372,34 +372,47 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
         .led-letter {
           display: inline-block;
-          animation: led-flicker 6s ease-in-out infinite;
+          animation: led-flicker 8s ease-in-out infinite;
         }
 
-        @keyframes tear-in {
+        @keyframes glitch-reveal {
           0% {
             opacity: 0;
-            transform: translateY(30px) rotateX(20deg) scale(0.9);
-            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-            filter: blur(8px);
+            transform: translateX(-100%);
+            filter: hue-rotate(0deg) brightness(1);
           }
-          60% {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          15% {
+            opacity: 0.5;
+            transform: translateX(10%) skewX(-5deg);
+            filter: hue-rotate(90deg) brightness(1.5);
           }
-          100% {
+          20% {
+            opacity: 0.3;
+            transform: translateX(-5%) skewX(5deg);
+            filter: hue-rotate(-90deg) brightness(0.8);
+          }
+          25% {
+            opacity: 0.8;
+            transform: translateX(3%) skewX(-2deg);
+          }
+          35% {
+            transform: translateX(-2%) skewX(1deg);
+            filter: hue-rotate(0deg) brightness(1);
+          }
+          45%, 100% {
             opacity: 1;
-            transform: translateY(0) rotateX(0) scale(1);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            filter: blur(0);
+            transform: translateX(0) skewX(0);
+            filter: hue-rotate(0deg) brightness(1);
           }
         }
 
         .scroll-reveal-item {
           opacity: 0;
-          transform: translateY(50px);
+          transform: translateX(-100%);
         }
 
         .scroll-reveal-item.visible {
-          animation: tear-in 0.9s ease-out forwards;
+          animation: glitch-reveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
         }
 
         @media (prefers-reduced-motion: reduce) {
