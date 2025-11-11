@@ -261,10 +261,13 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   'Generative AI', 'Deep Learning', 'Community Building', 'Research to Product'].map((strength, i) => {
                     const hasInfo = strengthInfo[strength];
                     return (
-                      <div key={i} className="relative group">
+                      <div
+                        key={i}
+                        className="relative group"
+                        onMouseEnter={() => hasInfo && setHoveredStrength(strength)}
+                        onMouseLeave={() => setHoveredStrength(null)}
+                      >
                         <button
-                          onMouseEnter={() => hasInfo && setHoveredStrength(strength)}
-                          onMouseLeave={() => setHoveredStrength(null)}
                           className={`px-3 py-2 bg-green-950/50 border border-green-600 text-green-400 font-mono text-xs hover:border-green-500 hover:bg-green-900/50 transition-all ${hasInfo ? 'cursor-help' : 'cursor-default'}`}
                         >
                           {strength}
