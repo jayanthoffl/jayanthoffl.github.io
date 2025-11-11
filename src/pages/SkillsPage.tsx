@@ -1,26 +1,6 @@
 import { Rocket, Trophy, Users, Code, Database, Cpu, Shield, Cloud, Gamepad2, Briefcase, Award } from 'lucide-react';
-import { useEffect } from 'react';
 
 export default function SkillsPage() {
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px'
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
-        }
-      });
-    }, observerOptions);
-
-    const elements = document.querySelectorAll('.scroll-reveal-item');
-    elements.forEach((el) => observer.observe(el));
-
-    return () => observer.disconnect();
-  }, []);
   const researchHighlights = [
     {
       title: 'Quantum Topological Data Analysis',
@@ -197,7 +177,7 @@ export default function SkillsPage() {
             {researchHighlights.map((research, index) => (
               <div
                 key={index}
-                className="border-2 border-green-500 bg-black/50 p-8 hover:bg-green-950/20 transition-all duration-300 group scroll-reveal-item"
+                className="border-2 border-green-500 bg-black/50 p-8 hover:bg-green-950/20 transition-all duration-300 group scroll-reveal"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="mb-6">
@@ -250,7 +230,7 @@ export default function SkillsPage() {
             {foundingInitiatives.map((initiative, index) => (
               <div
                 key={index}
-                className="border-2 border-green-500 bg-black/50 overflow-hidden group hover:border-green-400 transition-all duration-300 scroll-reveal-item"
+                className="border-2 border-green-500 bg-black/50 overflow-hidden group hover:border-green-400 transition-all duration-300 scroll-reveal"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className={`h-2 bg-gradient-to-r ${initiative.gradient}`} />
@@ -299,7 +279,7 @@ export default function SkillsPage() {
             {labDivisions.map((division, index) => (
               <div
                 key={index}
-                className="p-6 border-2 border-green-900 bg-green-950/20 hover:border-green-500 hover:bg-green-950/40 transition-all duration-300 group scroll-reveal-item"
+                className="p-6 border-2 border-green-900 bg-green-950/20 hover:border-green-500 hover:bg-green-950/40 transition-all duration-300 group scroll-reveal"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <division.icon className={`w-12 h-12 ${division.color} mb-4 group-hover:scale-110 transition-transform`} />
@@ -324,7 +304,7 @@ export default function SkillsPage() {
             {coreSkills.map((skillSet, index) => (
               <div
                 key={index}
-                className="border-2 border-green-500 bg-black/50 p-6 scroll-reveal-item"
+                className="border-2 border-green-500 bg-black/50 p-6 scroll-reveal"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <h3 className="text-xl font-bold text-green-400 mb-4 font-mono">
@@ -440,31 +420,9 @@ export default function SkillsPage() {
           }
         }
 
-        @keyframes tear-in {
-          0% {
-            opacity: 0;
-            transform: translateY(30px) rotateX(20deg) scale(0.9);
-            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
-            filter: blur(8px);
-          }
-          60% {
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-          }
-          100% {
-            opacity: 1;
-            transform: translateY(0) rotateX(0) scale(1);
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-            filter: blur(0);
-          }
-        }
-
-        .scroll-reveal-item {
+        .scroll-reveal {
           opacity: 0;
-          transform: translateY(50px);
-        }
-
-        .scroll-reveal-item.visible {
-          animation: tear-in 0.9s ease-out forwards;
+          animation: unwrap 0.8s ease-out forwards;
         }
       `}</style>
     </div>
