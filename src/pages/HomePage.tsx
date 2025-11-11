@@ -1,4 +1,7 @@
 import { Github, Linkedin, Instagram, Facebook, ChevronDown, Sparkles, Code, Cpu } from 'lucide-react';
+import { CRTEffect } from '../components/RetroEffects';
+import ArcadeButton from '../components/ArcadeButton';
+import HologramCard from '../components/HologramCard';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
@@ -7,6 +10,7 @@ interface HomePageProps {
 export default function HomePage({ onNavigate }: HomePageProps) {
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
+      <CRTEffect />
       <div className="absolute inset-0 opacity-20">
         <div className="grid-pattern" />
       </div>
@@ -91,18 +95,12 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
 
             <div className="flex flex-wrap gap-4">
-              <button
-                onClick={() => onNavigate('experience')}
-                className="px-8 py-4 bg-green-500 text-black font-bold font-mono tracking-wider hover:bg-green-400 transition-all duration-300 transform hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)]"
-              >
+              <ArcadeButton onClick={() => onNavigate('experience')} variant="primary">
                 VIEW_EXPERIENCE &gt;
-              </button>
-              <button
-                onClick={() => onNavigate('skills')}
-                className="px-8 py-4 border-2 border-green-500 text-green-400 font-bold font-mono tracking-wider hover:bg-green-950/50 transition-all duration-300"
-              >
+              </ArcadeButton>
+              <ArcadeButton onClick={() => onNavigate('skills')} variant="secondary">
                 VIEW_SKILLS &gt;
-              </button>
+              </ArcadeButton>
             </div>
           </div>
 

@@ -1,5 +1,7 @@
 import { Briefcase, Calendar, Award, ExternalLink, Users, Sparkles } from 'lucide-react';
 import { useState } from 'react';
+import { CRTEffect } from '../components/RetroEffects';
+import HologramCard from '../components/HologramCard';
 
 interface Experience {
   id: number;
@@ -92,6 +94,7 @@ export default function ExperiencePage() {
 
   return (
     <div className="min-h-screen bg-black text-green-400 relative overflow-hidden">
+      <CRTEffect />
       <div className="absolute inset-0 opacity-10">
         <div className="grid-pattern" />
       </div>

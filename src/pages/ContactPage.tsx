@@ -1,5 +1,7 @@
 import { Mail, Linkedin, Instagram, Facebook, MapPin, Send, Terminal } from 'lucide-react';
 import { useState } from 'react';
+import { CRTEffect } from '../components/RetroEffects';
+import ArcadeButton from '../components/ArcadeButton';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -50,6 +52,7 @@ export default function ContactPage() {
 
   return (
     <div className="min-h-screen bg-black text-green-400 relative overflow-hidden">
+      <CRTEffect />
       <div className="absolute inset-0 opacity-10">
         <div className="grid-pattern" />
       </div>

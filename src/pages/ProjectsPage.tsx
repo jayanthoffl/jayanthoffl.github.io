@@ -1,4 +1,6 @@
 import { Rocket, Trophy, Users, DollarSign, ExternalLink, Code, Database, Cpu, Shield, Cloud, Gamepad2 } from 'lucide-react';
+import { CRTEffect } from '../components/RetroEffects';
+import HologramCard from '../components/HologramCard';
 
 export default function ProjectsPage() {
   const mainProjects = [
@@ -88,6 +90,7 @@ export default function ProjectsPage() {
 
   return (
     <div className="min-h-screen bg-black text-green-400 relative overflow-hidden">
+      <CRTEffect />
       <div className="absolute inset-0 opacity-10">
         <div className="grid-pattern" />
       </div>
