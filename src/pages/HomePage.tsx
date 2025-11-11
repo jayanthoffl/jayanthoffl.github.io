@@ -1,4 +1,5 @@
-import { Github, Linkedin, Instagram, Facebook, ChevronDown, Sparkles, Code, Cpu } from 'lucide-react';
+import { Github, Linkedin, Instagram, Facebook, ChevronDown, Sparkles, Code, Cpu, Info } from 'lucide-react';
+import { useState } from 'react';
 import { CRTEffect } from '../components/RetroEffects';
 import ArcadeButton from '../components/ArcadeButton';
 import HologramCard from '../components/HologramCard';
@@ -7,7 +8,31 @@ interface HomePageProps {
   onNavigate: (page: string) => void;
 }
 
+const strengthInfo: Record<string, { description: string; learnMoreUrl: string }> = {
+  'Quantum Computing': {
+    description: 'Computing paradigm using quantum-mechanical phenomena like superposition and entanglement to perform operations on data. Enables solving complex problems exponentially faster than classical computers.',
+    learnMoreUrl: 'https://en.wikipedia.org/wiki/Quantum_computing'
+  },
+  'Quantum Machine Learning (QML)': {
+    description: 'Interdisciplinary field combining quantum computing with machine learning algorithms. Uses quantum algorithms to enhance ML tasks like optimization, pattern recognition, and data analysis.',
+    learnMoreUrl: 'https://en.wikipedia.org/wiki/Quantum_machine_learning'
+  },
+  'Topological Data Analysis (TDA)': {
+    description: 'Mathematical approach to analyze the shape and structure of data using concepts from topology. Reveals hidden patterns, features, and relationships in complex, high-dimensional datasets.',
+    learnMoreUrl: 'https://en.wikipedia.org/wiki/Topological_data_analysis'
+  },
+  'Generative AI': {
+    description: 'AI systems that can create new content (text, images, code, audio) by learning patterns from training data. Includes models like GPT, DALL-E, and Stable Diffusion.',
+    learnMoreUrl: 'https://en.wikipedia.org/wiki/Generative_artificial_intelligence'
+  },
+  'Deep Learning': {
+    description: 'Subset of machine learning using neural networks with multiple layers. Powers modern AI applications in computer vision, natural language processing, and more.',
+    learnMoreUrl: 'https://en.wikipedia.org/wiki/Deep_learning'
+  }
+};
+
 export default function HomePage({ onNavigate }: HomePageProps) {
+  const [hoveredStrength, setHoveredStrength] = useState<string | null>(null);
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       <CRTEffect />
@@ -226,17 +251,48 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-green-400 mb-3 font-mono">CORE_STRENGTHS</h3>
-              <div className="flex flex-wrap gap-2">
+              <h3 className="text-xl font-bold text-green-400 mb-3 font-mono flex items-center space-x-2">
+                <span>CORE_STRENGTHS</span>
+                <Info className="w-4 h-4 animate-pulse" />
+                <span className="text-xs text-green-300">(hover for info)</span>
+              </h3>
+              <div className="flex flex-wrap gap-3">
                 {['Quantum Computing', 'Quantum Machine Learning (QML)', 'Topological Data Analysis (TDA)',
-                  'Generative AI', 'Deep Learning', 'Community Building', 'Research to Product'].map((strength, i) => (
-                  <span
-                    key={i}
-                    className="px-3 py-2 bg-green-950/50 border border-green-600 text-green-400 font-mono text-xs hover:border-green-500 hover:bg-green-900/50 transition-all"
-                  >
-                    {strength}
-                  </span>
-                ))}
+                  'Generative AI', 'Deep Learning', 'Community Building', 'Research to Product'].map((strength, i) => {
+                    const hasInfo = strengthInfo[strength];
+                    return (
+                      <div key={i} className="relative group">
+                        <button
+                          onMouseEnter={() => hasInfo && setHoveredStrength(strength)}
+                          onMouseLeave={() => setHoveredStrength(null)}
+                          className={`px-3 py-2 bg-green-950/50 border border-green-600 text-green-400 font-mono text-xs hover:border-green-500 hover:bg-green-900/50 transition-all ${hasInfo ? 'cursor-help' : 'cursor-default'}`}
+                        >
+                          {strength}
+                          {hasInfo && <span className="ml-1 text-green-500">ⓘ</span>}
+                        </button>
+
+                        {hasInfo && hoveredStrength === strength && (
+                          <div className="absolute z-50 bottom-full left-0 mb-2 w-80 p-4 bg-black border-2 border-green-500 shadow-[0_0_20px_rgba(34,197,94,0.3)] animate-fadeIn">
+                            <div className="flex items-start space-x-2 mb-2">
+                              <Info className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
+                              <h4 className="text-green-400 font-mono font-bold text-sm">{strength}</h4>
+                            </div>
+                            <p className="text-green-300 font-mono text-xs leading-relaxed mb-3">
+                              {strengthInfo[strength].description}
+                            </p>
+                            <a
+                              href={strengthInfo[strength].learnMoreUrl}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="inline-flex items-center space-x-1 text-green-400 font-mono text-xs hover:text-green-300 transition-colors border border-green-600 px-2 py-1 hover:border-green-400"
+                            >
+                              <span>&gt; LEARN_MORE</span>
+                            </a>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
               </div>
             </div>
 
