@@ -56,7 +56,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <span>$ whoami</span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-bold text-green-400 glitch-effect">
+              <h1 className="text-5xl md:text-7xl font-bold text-green-400 glitch-effect whitespace-nowrap">
                 {'JAYANTH'.split('').map((char, i) => (
                   <span
                     key={i}
@@ -67,7 +67,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   </span>
                 ))}
               </h1>
-              <h2 className="text-4xl md:text-6xl font-bold text-green-300">
+              <h2 className="text-4xl md:text-6xl font-bold text-green-300 whitespace-nowrap">
                 {'RAMAKRISHNAN'.split('').map((char, i) => (
                   <span
                     key={i}
