@@ -8,6 +8,7 @@ interface NavigationProps {
 
 export default function Navigation({ currentPage, onNavigate }: NavigationProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
   const menuItems = [
     { id: 'home', label: '> HOME_' },
@@ -17,8 +18,12 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
   ];
 
   const handleNavigate = (page: string) => {
-    onNavigate(page);
-    setIsOpen(false);
+    setIsAnimating(true);
+    setTimeout(() => {
+      onNavigate(page);
+      setIsOpen(false);
+      setIsAnimating(false);
+    }, 300);
   };
 
   return (
@@ -55,26 +60,34 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
 
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="md:hidden text-green-400 hover:text-green-300 transition-colors"
+              className="md:hidden text-green-400 hover:text-green-300 transition-all duration-300 hover:scale-110 active:scale-95 p-2 border-2 border-green-500 bg-green-950/30 hover:bg-green-950/50"
             >
-              {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {isOpen ? (
+                <X className="w-6 h-6 animate-spin-once" />
+              ) : (
+                <Menu className="w-6 h-6 animate-pulse" />
+              )}
             </button>
           </div>
         </div>
 
         {isOpen && (
-          <div className="md:hidden bg-black/95 border-t border-green-900">
-            {menuItems.map((item) => (
+          <div className="md:hidden bg-black/95 border-t border-green-900 animate-slideDown">
+            {menuItems.map((item, index) => (
               <button
                 key={item.id}
                 onClick={() => handleNavigate(item.id)}
-                className={`block w-full text-left px-6 py-4 font-mono text-sm border-b border-green-900 transition-all ${
+                className={`block w-full text-left px-6 py-4 font-mono text-sm border-b border-green-900 transition-all duration-300 hover:scale-105 hover:translate-x-2 active:scale-95 animate-fadeInUp ${
                   currentPage === item.id
-                    ? 'text-green-400 bg-green-950/50'
+                    ? 'text-green-400 bg-green-950/50 border-l-4 border-l-green-400'
                     : 'text-green-300 hover:text-green-400 hover:bg-green-950/30'
                 }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
-                {item.label}
+                <span className="flex items-center">
+                  <span className="mr-2 opacity-0 group-hover:opacity-100 transition-opacity">&gt;</span>
+                  {item.label}
+                </span>
               </button>
             ))}
           </div>
@@ -82,6 +95,57 @@ export default function Navigation({ currentPage, onNavigate }: NavigationProps)
       </nav>
 
       <div className="h-16" />
+
+      <style>{`
+        @keyframes slideDown {
+          from {
+            opacity: 0;
+            transform: translateY(-10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes spin-once {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(180deg);
+          }
+        }
+
+        .animate-slideDown {
+          animation: slideDown 0.3s ease-out;
+        }
+
+        .animate-fadeInUp {
+          animation: fadeInUp 0.3s ease-out backwards;
+        }
+
+        .animate-spin-once {
+          animation: spin-once 0.3s ease-out;
+        }
+
+        @media (max-width: 768px) {
+          button:active {
+            transform: scale(0.95);
+          }
+        }
+      `}</style>
     </>
   );
 }
