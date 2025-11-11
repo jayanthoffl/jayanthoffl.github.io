@@ -261,13 +261,9 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   'Generative AI', 'Deep Learning', 'Community Building', 'Research to Product'].map((strength, i) => {
                     const hasInfo = strengthInfo[strength];
                     return (
-                      <div
-                        key={i}
-                        className="relative group"
-                        onMouseEnter={() => hasInfo && setHoveredStrength(strength)}
-                        onMouseLeave={() => setHoveredStrength(null)}
-                      >
+                      <div key={i} className="relative group">
                         <button
+                          onMouseEnter={() => hasInfo && setHoveredStrength(strength)}
                           className={`px-3 py-2 bg-green-950/50 border border-green-600 text-green-400 font-mono text-xs hover:border-green-500 hover:bg-green-900/50 transition-all ${hasInfo ? 'cursor-help' : 'cursor-default'}`}
                         >
                           {strength}
@@ -275,7 +271,11 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                         </button>
 
                         {hasInfo && hoveredStrength === strength && (
-                          <div className="absolute z-50 bottom-full left-0 mb-2 w-80 p-4 bg-black border-2 border-green-500 shadow-[0_0_20px_rgba(34,197,94,0.3)] animate-fadeIn">
+                          <div
+                            className="absolute z-50 bottom-full left-0 mb-2 w-80 p-4 bg-black border-2 border-green-500 shadow-[0_0_20px_rgba(34,197,94,0.3)] animate-fadeIn"
+                            onMouseEnter={() => setHoveredStrength(strength)}
+                            onMouseLeave={() => setHoveredStrength(null)}
+                          >
                             <div className="flex items-start space-x-2 mb-2">
                               <Info className="w-4 h-4 text-green-400 flex-shrink-0 mt-0.5" />
                               <h4 className="text-green-400 font-mono font-bold text-sm">{strength}</h4>
