@@ -37,12 +37,12 @@ export default function SkillsPage() {
       role: 'Founder & Lead',
       description: 'Leading the university\'s largest student tech community, delivering industry-aligned training and hackathons.',
       stats: [
-        { label: 'Participants', value: '600+' },
-        { label: 'States Reached', value: '15+' },
-        { label: 'Total Prize Pool', value: '₹15L+' }
+        { label: 'Participants', value: '1500+' },
+        { label: 'States Across Nation', value: '15+' },
+        { label: 'Total Prize Pool', value: '₹21L+' }
       ],
       highlights: [
-        'Organized HACK MSC 2.0 National Hackathon with ₹21Lakh+ Prize Pool',
+        'Organized HACK MSC 2.0 National Hackathon with 600+ participants and ₹21Lakh+ Prize Pool',
         'Biggest Hackathon in the region',
         'Training in Azure, Power BI, Generative AI',
         'Corporate partnerships and networking events'
