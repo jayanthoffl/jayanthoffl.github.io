@@ -68,25 +68,25 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 href="https://www.linkedin.com/in/jayanth-ramakrishnan/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-green-950/50 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group"
+                className="p-3 bg-green-950/50 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group hover:shadow-[0_0_20px_rgba(34,197,94,0.6)] hover:-translate-y-1"
               >
-                <Linkedin className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <Linkedin className="w-6 h-6 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12" />
               </a>
               <a
                 href="https://www.instagram.com/thejayanthramakrishnan/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-green-950/50 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group"
+                className="p-3 bg-green-950/50 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group hover:shadow-[0_0_20px_rgba(34,197,94,0.6)] hover:-translate-y-1"
               >
-                <Instagram className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <Instagram className="w-6 h-6 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12" />
               </a>
               <a
                 href="https://www.facebook.com/thejayanthramakrishnanofficial"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-3 bg-green-950/50 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group"
+                className="p-3 bg-green-950/50 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group hover:shadow-[0_0_20px_rgba(34,197,94,0.6)] hover:-translate-y-1"
               >
-                <Facebook className="w-6 h-6 group-hover:scale-110 transition-transform" />
+                <Facebook className="w-6 h-6 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12" />
               </a>
             </div>
 

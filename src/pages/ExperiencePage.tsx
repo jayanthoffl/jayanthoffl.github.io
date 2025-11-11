@@ -132,8 +132,8 @@ export default function ExperiencePage() {
                 onClick={() => setSelectedExp(index)}
                 className={`w-full text-left p-4 border-2 transition-all duration-300 font-mono group scroll-reveal ${
                   selectedExp === index
-                    ? 'border-green-400 bg-green-950/50 text-green-400'
-                    : 'border-green-900 bg-green-950/20 text-green-500 hover:border-green-500 hover:bg-green-950/30'
+                    ? 'border-green-400 bg-green-950/50 text-green-400 shadow-[0_0_20px_rgba(34,197,94,0.3)]'
+                    : 'border-green-900 bg-green-950/20 text-green-500 hover:border-green-500 hover:bg-green-950/30 hover:scale-105 hover:shadow-[0_0_15px_rgba(34,197,94,0.2)] hover:-translate-y-1'
                 }`}
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
@@ -143,7 +143,7 @@ export default function ExperiencePage() {
                       <Calendar className="w-3 h-3" />
                       <span>{exp.timeline}</span>
                     </div>
-                    <h3 className="font-bold text-sm leading-tight group-hover:text-green-300 transition-colors">
+                    <h3 className="font-bold text-sm leading-tight group-hover:text-green-300 transition-all duration-300 group-hover:translate-x-1">
                       {exp.title}
                     </h3>
                   </div>
@@ -157,14 +157,14 @@ export default function ExperiencePage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="border-2 border-green-500 bg-black/50 p-8 min-h-[600px] relative overflow-hidden scroll-reveal" style={{ animationDelay: '0.3s' }}>
+            <div className="border-2 border-green-500 bg-black/50 p-8 min-h-[600px] relative overflow-hidden scroll-reveal transition-all duration-500 hover:border-green-400 hover:shadow-[0_0_30px_rgba(34,197,94,0.3)]" style={{ animationDelay: '0.3s' }}>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent animate-scan" />
 
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-6">
                   <div>
                     <div className="flex items-center space-x-3 mb-2">
-                      <h2 className="text-3xl font-bold text-green-400 font-mono">
+                      <h2 className="text-3xl font-bold text-green-400 font-mono transition-all duration-300 hover:text-green-300">
                         {experiences[selectedExp].title}
                       </h2>
                       {experiences[selectedExp].isActive && (
@@ -186,9 +186,9 @@ export default function ExperiencePage() {
                       href={experiences[selectedExp].link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-3 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group"
+                      className="p-3 border-2 border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 group hover:scale-110 hover:shadow-[0_0_20px_rgba(34,197,94,0.5)] hover:rotate-3"
                     >
-                      <ExternalLink className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                      <ExternalLink className="w-5 h-5 transition-transform duration-300 group-hover:scale-125 group-hover:rotate-12" />
                     </a>
                   )}
                 </div>
@@ -207,10 +207,10 @@ export default function ExperiencePage() {
                     {experiences[selectedExp].achievements.map((achievement, index) => (
                       <div
                         key={index}
-                        className="flex items-start space-x-3 p-3 border border-green-900 bg-green-950/20 hover:bg-green-950/40 transition-all group animate-fadeInUp"
+                        className="flex items-start space-x-3 p-3 border border-green-900 bg-green-950/20 hover:bg-green-950/40 transition-all duration-300 group animate-fadeInUp hover:translate-x-2 hover:border-green-700 hover:shadow-[0_0_10px_rgba(34,197,94,0.2)]"
                         style={{ animationDelay: `${index * 0.1}s` }}
                       >
-                        <div className="w-2 h-2 bg-green-500 mt-2 flex-shrink-0 group-hover:scale-150 transition-transform" />
+                        <div className="w-2 h-2 bg-green-500 mt-2 flex-shrink-0 transition-all duration-300 group-hover:scale-150 group-hover:shadow-[0_0_10px_rgba(34,197,94,0.8)]" />
                         <p className="text-green-300 font-mono text-sm leading-relaxed">
                           {achievement}
                         </p>

@@ -193,7 +193,7 @@ export default function ContactPage() {
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full bg-green-950/20 border-2 border-green-900 text-green-300 px-4 py-3 font-mono focus:border-green-500 focus:outline-none transition-colors"
+                    className="w-full bg-green-950/20 border-2 border-green-900 text-green-300 px-4 py-3 font-mono focus:border-green-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(34,197,94,0.3)] focus:scale-102"
                     placeholder="Enter your name"
                   />
                 </div>
@@ -207,7 +207,7 @@ export default function ContactPage() {
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                    className="w-full bg-green-950/20 border-2 border-green-900 text-green-300 px-4 py-3 font-mono focus:border-green-500 focus:outline-none transition-colors"
+                    className="w-full bg-green-950/20 border-2 border-green-900 text-green-300 px-4 py-3 font-mono focus:border-green-500 focus:outline-none transition-all duration-300 focus:shadow-[0_0_15px_rgba(34,197,94,0.3)] focus:scale-102"
                     placeholder="your.email@example.com"
                   />
                 </div>
@@ -221,7 +221,7 @@ export default function ContactPage() {
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     rows={6}
-                    className="w-full bg-green-950/20 border-2 border-green-900 text-green-300 px-4 py-3 font-mono focus:border-green-500 focus:outline-none transition-colors resize-none"
+                    className="w-full bg-green-950/20 border-2 border-green-900 text-green-300 px-4 py-3 font-mono focus:border-green-500 focus:outline-none transition-all duration-300 resize-none focus:shadow-[0_0_15px_rgba(34,197,94,0.3)] focus:scale-102"
                     placeholder="Tell me about your project or collaboration idea..."
                   />
                 </div>

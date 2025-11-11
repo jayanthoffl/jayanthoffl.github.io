@@ -127,7 +127,7 @@ export default function ProjectsPage() {
           {mainProjects.map((project, index) => (
             <div
               key={index}
-              className="border-2 border-green-500 bg-black/50 overflow-hidden group hover:border-green-400 transition-all duration-300 animate-fadeIn"
+              className="border-2 border-green-500 bg-black/50 overflow-hidden group hover:border-green-400 transition-all duration-500 animate-fadeIn hover:scale-105 hover:shadow-[0_0_30px_rgba(34,197,94,0.4)] hover:-translate-y-2"
               style={{ animationDelay: `${index * 0.2}s` }}
             >
               <div className={`h-2 bg-gradient-to-r ${project.gradient}`} />
@@ -135,7 +135,7 @@ export default function ProjectsPage() {
               <div className="p-6">
                 <div className="flex items-start justify-between mb-4">
                   <div>
-                    <h3 className="text-2xl font-bold text-green-400 mb-1 font-mono group-hover:text-green-300 transition-colors">
+                    <h3 className="text-2xl font-bold text-green-400 mb-1 font-mono group-hover:text-green-300 transition-all duration-300 group-hover:translate-x-1">
                       {project.title}
                     </h3>
                     <p className="text-green-500 font-mono text-sm">{project.subtitle}</p>
@@ -145,9 +145,9 @@ export default function ProjectsPage() {
                       href={project.link}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="p-2 border border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300"
+                      className="p-2 border border-green-500 text-green-400 hover:bg-green-500 hover:text-black transition-all duration-300 hover:scale-110 hover:rotate-12 hover:shadow-[0_0_15px_rgba(34,197,94,0.6)]"
                     >
-                      <ExternalLink className="w-5 h-5" />
+                      <ExternalLink className="w-5 h-5 transition-transform duration-300" />
                     </a>
                   )}
                 </div>
@@ -158,8 +158,8 @@ export default function ProjectsPage() {
 
                 <div className="grid grid-cols-3 gap-4 mb-6">
                   {project.stats.map((stat, i) => (
-                    <div key={i} className="text-center p-3 border border-green-900 bg-green-950/20">
-                      <stat.icon className="w-6 h-6 text-green-400 mx-auto mb-2" />
+                    <div key={i} className="text-center p-3 border border-green-900 bg-green-950/20 transition-all duration-300 hover:bg-green-950/40 hover:border-green-700 hover:scale-110 hover:shadow-[0_0_15px_rgba(34,197,94,0.3)]">
+                      <stat.icon className="w-6 h-6 text-green-400 mx-auto mb-2 transition-transform duration-300 hover:scale-125" />
                       <div className="text-2xl font-bold text-green-400 mb-1">{stat.value}</div>
                       <div className="text-xs text-green-500 font-mono">{stat.label}</div>
                     </div>
@@ -170,7 +170,7 @@ export default function ProjectsPage() {
                   {project.tags.map((tag, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-green-950/50 border border-green-600 text-green-400 font-mono text-xs"
+                      className="px-3 py-1 bg-green-950/50 border border-green-600 text-green-400 font-mono text-xs transition-all duration-300 hover:scale-110 hover:border-green-500 hover:bg-green-900/50 hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] cursor-default"
                     >
                       {tag}
                     </span>
@@ -191,10 +191,10 @@ export default function ProjectsPage() {
             {divisions.map((division, index) => (
               <div
                 key={index}
-                className="p-6 border-2 border-green-900 bg-green-950/20 hover:border-green-500 hover:bg-green-950/40 transition-all duration-300 group animate-fadeInUp"
+                className="p-6 border-2 border-green-900 bg-green-950/20 hover:border-green-500 hover:bg-green-950/40 transition-all duration-500 group animate-fadeInUp hover:scale-105 hover:shadow-[0_0_20px_rgba(34,197,94,0.3)] hover:-translate-y-1"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <division.icon className={`w-12 h-12 ${division.color} mb-4 group-hover:scale-110 transition-transform`} />
+                <division.icon className={`w-12 h-12 ${division.color} mb-4 transition-transform duration-500 group-hover:scale-125 group-hover:rotate-12`} />
                 <h3 className="text-xl font-bold text-green-400 mb-2 font-mono">
                   {division.name}
                 </h3>
@@ -216,10 +216,10 @@ export default function ProjectsPage() {
             {researchHighlights.map((highlight, index) => (
               <div
                 key={index}
-                className="border-2 border-green-500 bg-black/50 p-6 hover:bg-green-950/20 transition-all duration-300 group animate-fadeInUp"
+                className="border-2 border-green-500 bg-black/50 p-6 hover:bg-green-950/20 transition-all duration-500 group animate-fadeInUp hover:scale-102 hover:shadow-[0_0_25px_rgba(34,197,94,0.3)] hover:border-green-400"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                <h3 className="text-xl font-bold text-green-400 mb-3 font-mono group-hover:text-green-300 transition-colors">
+                <h3 className="text-xl font-bold text-green-400 mb-3 font-mono group-hover:text-green-300 transition-all duration-300 group-hover:translate-x-2">
                   &gt; {highlight.title}
                 </h3>
                 <p className="text-green-300 font-mono text-sm mb-4 leading-relaxed">
@@ -229,7 +229,7 @@ export default function ProjectsPage() {
                   {highlight.tech.map((tech, i) => (
                     <span
                       key={i}
-                      className="px-3 py-1 bg-green-950/50 border border-green-700 text-green-400 font-mono text-xs hover:border-green-500 transition-colors"
+                      className="px-3 py-1 bg-green-950/50 border border-green-700 text-green-400 font-mono text-xs hover:border-green-500 transition-all duration-300 hover:scale-110 hover:bg-green-900/50 hover:shadow-[0_0_10px_rgba(34,197,94,0.3)] cursor-default"
                     >
                       [{tech}]
                     </span>
@@ -240,8 +240,8 @@ export default function ProjectsPage() {
           </div>
         </div>
 
-        <div className="mt-16 p-8 border-2 border-green-500 bg-gradient-to-br from-green-950/30 to-black/50 text-center">
-          <Trophy className="w-16 h-16 text-green-400 mx-auto mb-4 animate-bounce" />
+        <div className="mt-16 p-8 border-2 border-green-500 bg-gradient-to-br from-green-950/30 to-black/50 text-center transition-all duration-500 hover:border-green-400 hover:shadow-[0_0_40px_rgba(34,197,94,0.4)] hover:scale-102">
+          <Trophy className="w-16 h-16 text-green-400 mx-auto mb-4 animate-bounce hover:scale-125 transition-transform duration-300" />
           <h3 className="text-3xl font-bold text-green-400 mb-2 font-mono">
             BUILDING THE FUTURE
           </h3>
