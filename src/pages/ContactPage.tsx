@@ -2,6 +2,7 @@ import { Mail, Linkedin, Instagram, Facebook, MapPin, Send, Terminal } from 'luc
 import { useState } from 'react';
 import { CRTEffect } from '../components/RetroEffects';
 import ArcadeButton from '../components/ArcadeButton';
+import TypingText from '../components/TypingText';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -100,8 +101,8 @@ export default function ContactPage() {
             <Mail className="w-5 h-5 animate-pulse" />
             <span>$ echo "Let's connect"</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4 glitch-text">
-            GET_IN_TOUCH
+          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4">
+            <TypingText text="GET_IN_TOUCH" speed={80} />
           </h1>
           <p className="text-green-300 font-mono text-lg">
             Ready to collaborate on the next big innovation?

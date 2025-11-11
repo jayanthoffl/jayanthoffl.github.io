@@ -1,6 +1,7 @@
 import { Rocket, Trophy, Users, DollarSign, ExternalLink, Code, Database, Cpu, Shield, Cloud, Gamepad2 } from 'lucide-react';
 import { CRTEffect } from '../components/RetroEffects';
 import HologramCard from '../components/HologramCard';
+import TypingText from '../components/TypingText';
 
 export default function ProjectsPage() {
   const mainProjects = [
@@ -118,8 +119,8 @@ export default function ProjectsPage() {
             <Rocket className="w-5 h-5 animate-pulse" />
             <span>$ ls -la projects/</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4 glitch-text">
-            PROJECTS_&_ACHIEVEMENTS
+          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4">
+            <TypingText text="PROJECTS_&_ACHIEVEMENTS" speed={80} />
           </h1>
           <p className="text-green-300 font-mono text-lg">
             Building the future, one innovation at a time

@@ -1,6 +1,7 @@
 import { Rocket, Trophy, Users, Code, Database, Cpu, Shield, Cloud, Gamepad2, Briefcase, Award } from 'lucide-react';
 import { CRTEffect } from '../components/RetroEffects';
 import HologramCard from '../components/HologramCard';
+import TypingText from '../components/TypingText';
 
 export default function SkillsPage() {
   const researchHighlights = [
@@ -162,8 +163,8 @@ export default function SkillsPage() {
             <Code className="w-5 h-5 animate-pulse" />
             <span>$ cat skills.json</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4 glitch-text">
-            SKILLS_&_EXPERTISE
+          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4">
+            <TypingText text="SKILLS_&_EXPERTISE" speed={80} />
           </h1>
           <p className="text-green-300 font-mono text-lg">
             Research, Innovation, and Leadership in Action

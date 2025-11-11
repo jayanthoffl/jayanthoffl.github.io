@@ -2,6 +2,7 @@ import { Briefcase, Calendar, Award, ExternalLink, Users, Sparkles } from 'lucid
 import { useState } from 'react';
 import { CRTEffect } from '../components/RetroEffects';
 import HologramCard from '../components/HologramCard';
+import TypingText from '../components/TypingText';
 
 interface Experience {
   id: number;
@@ -119,8 +120,8 @@ export default function ExperiencePage() {
             <Briefcase className="w-5 h-5 animate-pulse" />
             <span>$ cat experience.log</span>
           </div>
-          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4 glitch-text">
-            EXPERIENCE_TIMELINE
+          <h1 className="text-5xl md:text-6xl font-bold text-green-400 mb-4">
+            <TypingText text="EXPERIENCE_TIMELINE" speed={80} />
           </h1>
           <p className="text-green-300 font-mono text-lg">
             Journey through leadership, research, and innovation
