@@ -56,7 +56,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <span>$ whoami</span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-bold text-green-400 glitch-effect whitespace-nowrap">
+              <h1 className="text-5xl md:text-7xl font-bold text-green-400 glitch-effect">
                 {'JAYANTH'.split('').map((char, i) => (
                   <span
                     key={i}
@@ -67,7 +67,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                   </span>
                 ))}
               </h1>
-              <h2 className="text-4xl md:text-6xl font-bold text-green-300 whitespace-nowrap">
+              <h2 className="text-4xl md:text-6xl font-bold text-green-300">
                 {'RAMAKRISHNAN'.split('').map((char, i) => (
                   <span
                     key={i}
@@ -353,18 +353,18 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         }
 
         @keyframes led-flicker {
-          0%, 94%, 100% {
+          0%, 18%, 22%, 24%, 26%, 32%, 34%, 36%, 42%, 44%, 46%, 72%, 74%, 76%, 100% {
             opacity: 1;
             text-shadow:
               0 0 10px rgba(34, 197, 94, 0.8),
               0 0 20px rgba(34, 197, 94, 0.6),
               0 0 30px rgba(34, 197, 94, 0.4);
           }
-          94.5%, 95.5% {
-            opacity: 0.3;
-            text-shadow: 0 0 5px rgba(34, 197, 94, 0.2);
+          20%, 23%, 25%, 33%, 35%, 43%, 45%, 73%, 75% {
+            opacity: 0.4;
+            text-shadow: 0 0 5px rgba(34, 197, 94, 0.3);
           }
-          95% {
+          21%, 24%, 34%, 44%, 74% {
             opacity: 0.1;
             text-shadow: none;
           }
@@ -372,47 +372,34 @@ export default function HomePage({ onNavigate }: HomePageProps) {
 
         .led-letter {
           display: inline-block;
-          animation: led-flicker 8s ease-in-out infinite;
+          animation: led-flicker 6s ease-in-out infinite;
         }
 
-        @keyframes glitch-reveal {
+        @keyframes tear-in {
           0% {
             opacity: 0;
-            transform: translateX(-100%);
-            filter: hue-rotate(0deg) brightness(1);
+            transform: translateY(30px) rotateX(20deg) scale(0.9);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            filter: blur(8px);
           }
-          15% {
-            opacity: 0.5;
-            transform: translateX(10%) skewX(-5deg);
-            filter: hue-rotate(90deg) brightness(1.5);
+          60% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           }
-          20% {
-            opacity: 0.3;
-            transform: translateX(-5%) skewX(5deg);
-            filter: hue-rotate(-90deg) brightness(0.8);
-          }
-          25% {
-            opacity: 0.8;
-            transform: translateX(3%) skewX(-2deg);
-          }
-          35% {
-            transform: translateX(-2%) skewX(1deg);
-            filter: hue-rotate(0deg) brightness(1);
-          }
-          45%, 100% {
+          100% {
             opacity: 1;
-            transform: translateX(0) skewX(0);
-            filter: hue-rotate(0deg) brightness(1);
+            transform: translateY(0) rotateX(0) scale(1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            filter: blur(0);
           }
         }
 
         .scroll-reveal-item {
           opacity: 0;
-          transform: translateX(-100%);
+          transform: translateY(50px);
         }
 
         .scroll-reveal-item.visible {
-          animation: glitch-reveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+          animation: tear-in 0.9s ease-out forwards;
         }
 
         @media (prefers-reduced-motion: reduce) {

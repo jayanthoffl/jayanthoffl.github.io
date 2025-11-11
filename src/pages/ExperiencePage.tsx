@@ -327,44 +327,31 @@ export default function ExperiencePage() {
           }
         }
 
-        @keyframes glitch-reveal {
+        @keyframes tear-in {
           0% {
             opacity: 0;
-            transform: translateX(-100%);
-            filter: hue-rotate(0deg) brightness(1);
+            transform: translateY(30px) rotateX(20deg) scale(0.9);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            filter: blur(8px);
           }
-          15% {
-            opacity: 0.5;
-            transform: translateX(10%) skewX(-5deg);
-            filter: hue-rotate(90deg) brightness(1.5);
+          60% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
           }
-          20% {
-            opacity: 0.3;
-            transform: translateX(-5%) skewX(5deg);
-            filter: hue-rotate(-90deg) brightness(0.8);
-          }
-          25% {
-            opacity: 0.8;
-            transform: translateX(3%) skewX(-2deg);
-          }
-          35% {
-            transform: translateX(-2%) skewX(1deg);
-            filter: hue-rotate(0deg) brightness(1);
-          }
-          45%, 100% {
+          100% {
             opacity: 1;
-            transform: translateX(0) skewX(0);
-            filter: hue-rotate(0deg) brightness(1);
+            transform: translateY(0) rotateX(0) scale(1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            filter: blur(0);
           }
         }
 
         .scroll-reveal-item {
           opacity: 0;
-          transform: translateX(-100%);
+          transform: translateY(50px);
         }
 
         .scroll-reveal-item.visible {
-          animation: glitch-reveal 1.2s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+          animation: tear-in 0.9s ease-out forwards;
         }
       `}</style>
     </div>
