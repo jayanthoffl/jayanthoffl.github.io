@@ -12,6 +12,7 @@ export default function ContactPage() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const socialLinks = [
     {
@@ -40,14 +41,35 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError(null);
 
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      const response = await fetch('https://formspree.io/f/mrbrgynq', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          message: formData.message
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to send message. Please try again.');
+      }
+
       setSubmitted(true);
       setFormData({ name: '', email: '', message: '' });
 
       setTimeout(() => setSubmitted(false), 5000);
-    }, 2000);
+    } catch (err) {
+      console.error('Error submitting form:', err);
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -181,9 +203,23 @@ export default function ContactPage() {
                   <h3 className="text-2xl font-bold text-green-400 font-mono">MESSAGE_SENT</h3>
                   <p className="text-green-300 font-mono text-sm">
                     Thanks for reaching out!<br />
-                    I'll get back to you soon.
+                    I'll get back to you via email soon.
                   </p>
                 </div>
+              </div>
+            ) : error ? (
+              <div className="space-y-6">
+                <div className="p-4 border-2 border-red-500 bg-red-950/20">
+                  <p className="text-red-400 font-mono text-sm">
+                    <span className="font-bold">ERROR:</span> {error}
+                  </p>
+                </div>
+                <button
+                  onClick={() => setError(null)}
+                  className="px-6 py-3 border-2 border-green-500 text-green-400 font-bold font-mono hover:bg-green-950/50 transition-all duration-300"
+                >
+                  TRY_AGAIN
+                </button>
               </div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
@@ -251,8 +287,7 @@ export default function ContactPage() {
 
             <div className="mt-6 p-4 border border-green-900 bg-green-950/20">
               <p className="text-green-400 font-mono text-xs">
-                <span className="text-green-500">Note:</span> This is a demo form. For actual inquiries,
-                please reach out via social media links above.
+                <span className="text-green-500">Note:</span> Your message will be sent directly to my email and I'll respond within 24-48 hours.
               </p>
             </div>
           </div>
