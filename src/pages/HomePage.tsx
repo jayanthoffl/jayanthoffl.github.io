@@ -87,7 +87,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
             <p className="text-green-300 text-lg leading-relaxed font-mono">
               A builder at the intersection of{' '}
               <span className="text-green-400 font-bold">Quantum Computing</span>,{' '}
-              <span className="text-green-400 font-bold">Generative AI</span>, and{' '}
+              <span className="text-green-400 font-bold">Generative AI, Java Development</span>, and{' '}
               <span className="text-green-400 font-bold">student-led research ecosystems</span>.
               Founded the Microsoft Student Community — SRMAP and The Singularity Advanced Student Research Lab at SRM University AP.
             </p>
