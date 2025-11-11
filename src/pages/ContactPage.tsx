@@ -1,7 +1,27 @@
 import { Mail, Linkedin, Instagram, Facebook, MapPin, Send, Terminal } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function ContactPage() {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.scroll-reveal-item');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -85,7 +105,7 @@ export default function ContactPage() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="space-y-8">
-            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal">
+            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal-item">
               <div className="flex items-center space-x-3 mb-6">
                 <Terminal className="w-6 h-6 text-green-400" />
                 <h2 className="text-2xl font-bold text-green-400 font-mono">CONNECT_ONLINE</h2>
@@ -114,7 +134,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal" style={{ animationDelay: '0.2s' }}>
+            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal-item">
               <div className="flex items-center space-x-3 mb-6">
                 <MapPin className="w-6 h-6 text-green-400" />
                 <h2 className="text-2xl font-bold text-green-400 font-mono">LOCATION</h2>
@@ -128,7 +148,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="border-2 border-green-900 bg-green-950/20 p-6 scroll-reveal" style={{ animationDelay: '0.4s' }}>
+            <div className="border-2 border-green-900 bg-green-950/20 p-6 scroll-reveal-item">
               <h3 className="text-xl font-bold text-green-400 mb-4 font-mono">RESEARCH_INTERESTS</h3>
               <div className="flex flex-wrap gap-2">
                 {['Quantum Computing', 'AI/ML', 'Cloud Tech', 'Web3', 'CyberSec', 'IoT'].map((interest, i) => (
@@ -142,7 +162,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal" style={{ animationDelay: '0.6s' }}>
+            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal-item">
               <div className="flex items-center space-x-3 mb-6">
                 <Terminal className="w-6 h-6 text-green-400" />
                 <h2 className="text-2xl font-bold text-green-400 font-mono">JOIN_LAB</h2>
@@ -163,7 +183,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal" style={{ animationDelay: '0.3s' }}>
+          <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal-item">
             <div className="flex items-center space-x-3 mb-6">
               <Send className="w-6 h-6 text-green-400" />
               <h2 className="text-2xl font-bold text-green-400 font-mono">SEND_MESSAGE</h2>
@@ -330,9 +350,31 @@ export default function ContactPage() {
           }
         }
 
-        .scroll-reveal {
+        @keyframes tear-in {
+          0% {
+            opacity: 0;
+            transform: translateY(30px) rotateX(20deg) scale(0.9);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            filter: blur(8px);
+          }
+          60% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) rotateX(0) scale(1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            filter: blur(0);
+          }
+        }
+
+        .scroll-reveal-item {
           opacity: 0;
-          animation: unwrap 0.8s ease-out forwards;
+          transform: translateY(50px);
+        }
+
+        .scroll-reveal-item.visible {
+          animation: tear-in 0.9s ease-out forwards;
         }
       `}</style>
     </div>

@@ -1,10 +1,31 @@
 import { Github, Linkedin, Instagram, Facebook, ChevronDown, Sparkles, Code, Cpu } from 'lucide-react';
+import { useEffect } from 'react';
 
 interface HomePageProps {
   onNavigate: (page: string) => void;
 }
 
 export default function HomePage({ onNavigate }: HomePageProps) {
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.scroll-reveal-item');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-black relative overflow-hidden">
       <div className="absolute inset-0 opacity-20">
@@ -35,11 +56,27 @@ export default function HomePage({ onNavigate }: HomePageProps) {
                 <span>$ whoami</span>
               </div>
 
-              <h1 className="text-5xl md:text-7xl font-bold text-green-400 glitch-effect led-flicker" data-text="JAYANTH">
-                JAYANTH
+              <h1 className="text-5xl md:text-7xl font-bold text-green-400 glitch-effect">
+                {'JAYANTH'.split('').map((char, i) => (
+                  <span
+                    key={i}
+                    className="led-letter"
+                    style={{ animationDelay: `${Math.random() * 2}s` }}
+                  >
+                    {char}
+                  </span>
+                ))}
               </h1>
-              <h2 className="text-4xl md:text-6xl font-bold text-green-300 led-flicker" style={{ animationDelay: '0.3s' }}>
-                RAMAKRISHNAN
+              <h2 className="text-4xl md:text-6xl font-bold text-green-300">
+                {'RAMAKRISHNAN'.split('').map((char, i) => (
+                  <span
+                    key={i}
+                    className="led-letter"
+                    style={{ animationDelay: `${Math.random() * 2}s` }}
+                  >
+                    {char}
+                  </span>
+                ))}
               </h2>
 
               <div className="flex flex-wrap gap-2 pt-4">
@@ -140,26 +177,26 @@ export default function HomePage({ onNavigate }: HomePageProps) {
       <div className="relative z-10 bg-gradient-to-b from-transparent to-black/50 py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8 mb-16">
-            <div className="p-6 border-2 border-green-500 bg-green-950/20 hover:bg-green-950/40 transition-all group scroll-reveal">
+            <div className="p-6 border-2 border-green-500 bg-green-950/20 hover:bg-green-950/40 transition-all group scroll-reveal-item">
               <Sparkles className="w-12 h-12 text-green-400 mb-4 group-hover:animate-spin" />
               <h3 className="text-xl font-bold text-green-400 mb-2 font-mono">FOUNDER</h3>
               <p className="text-green-300 font-mono text-sm">Singularity Advanced Student Research Lab with 15Lakh+ Funding</p>
             </div>
 
-            <div className="p-6 border-2 border-green-500 bg-green-950/20 hover:bg-green-950/40 transition-all group scroll-reveal" style={{ animationDelay: '0.2s' }}>
+            <div className="p-6 border-2 border-green-500 bg-green-950/20 hover:bg-green-950/40 transition-all group scroll-reveal-item">
               <Code className="w-12 h-12 text-green-400 mb-4 group-hover:animate-pulse" />
               <h3 className="text-xl font-bold text-green-400 mb-2 font-mono">LEADER</h3>
               <p className="text-green-300 font-mono text-sm">Microsoft Student Community — SRM AP, largest student tech community</p>
             </div>
 
-            <div className="p-6 border-2 border-green-500 bg-green-950/20 hover:bg-green-950/40 transition-all group scroll-reveal" style={{ animationDelay: '0.4s' }}>
+            <div className="p-6 border-2 border-green-500 bg-green-950/20 hover:bg-green-950/40 transition-all group scroll-reveal-item">
               <Cpu className="w-12 h-12 text-green-400 mb-4 group-hover:scale-110 transition-transform" />
               <h3 className="text-xl font-bold text-green-400 mb-2 font-mono">CORE SKILLS</h3>
               <p className="text-green-300 font-mono text-sm">AI ML Engineer, Quantum Computing Researcher, Java Developer</p>
             </div>
           </div>
 
-          <div className="border-2 border-green-500 bg-black/50 p-8 md:p-12 space-y-8 scroll-reveal">
+          <div className="border-2 border-green-500 bg-black/50 p-8 md:p-12 space-y-8 scroll-reveal-item">
             <div>
               <h2 className="text-3xl font-bold text-green-400 mb-4 font-mono flex items-center space-x-3">
                 <Sparkles className="w-8 h-8" />
@@ -316,46 +353,53 @@ export default function HomePage({ onNavigate }: HomePageProps) {
         }
 
         @keyframes led-flicker {
-          0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+          0%, 18%, 22%, 24%, 26%, 32%, 34%, 36%, 42%, 44%, 46%, 72%, 74%, 76%, 100% {
             opacity: 1;
             text-shadow:
               0 0 10px rgba(34, 197, 94, 0.8),
               0 0 20px rgba(34, 197, 94, 0.6),
-              0 0 30px rgba(34, 197, 94, 0.4),
-              0 0 40px rgba(34, 197, 94, 0.2);
+              0 0 30px rgba(34, 197, 94, 0.4);
           }
-          20%, 24%, 55% {
-            opacity: 0.7;
-            text-shadow:
-              0 0 5px rgba(34, 197, 94, 0.4),
-              0 0 10px rgba(34, 197, 94, 0.2);
+          20%, 23%, 25%, 33%, 35%, 43%, 45%, 73%, 75% {
+            opacity: 0.4;
+            text-shadow: 0 0 5px rgba(34, 197, 94, 0.3);
           }
-          22% {
-            opacity: 0.3;
+          21%, 24%, 34%, 44%, 74% {
+            opacity: 0.1;
             text-shadow: none;
           }
         }
 
-        .led-flicker {
-          animation: led-flicker 4s ease-in-out infinite;
+        .led-letter {
+          display: inline-block;
+          animation: led-flicker 6s ease-in-out infinite;
         }
 
-        @keyframes unwrap {
-          from {
+        @keyframes tear-in {
+          0% {
             opacity: 0;
-            transform: translateY(50px) rotateX(-15deg);
-            filter: blur(10px);
+            transform: translateY(30px) rotateX(20deg) scale(0.9);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            filter: blur(8px);
           }
-          to {
+          60% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+          100% {
             opacity: 1;
-            transform: translateY(0) rotateX(0);
+            transform: translateY(0) rotateX(0) scale(1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
             filter: blur(0);
           }
         }
 
-        .scroll-reveal {
+        .scroll-reveal-item {
           opacity: 0;
-          animation: unwrap 0.8s ease-out forwards;
+          transform: translateY(50px);
+        }
+
+        .scroll-reveal-item.visible {
+          animation: tear-in 0.9s ease-out forwards;
         }
 
         @media (prefers-reduced-motion: reduce) {

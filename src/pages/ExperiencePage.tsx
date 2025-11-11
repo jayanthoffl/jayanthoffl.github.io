@@ -1,5 +1,5 @@
 import { Briefcase, Calendar, Award, ExternalLink, Users, Sparkles } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 interface Experience {
   id: number;
@@ -14,6 +14,26 @@ interface Experience {
 
 export default function ExperiencePage() {
   const [selectedExp, setSelectedExp] = useState<number>(0);
+
+  useEffect(() => {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, observerOptions);
+
+    const elements = document.querySelectorAll('.scroll-reveal-item');
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   const experiences: Experience[] = [
     {
@@ -130,7 +150,7 @@ export default function ExperiencePage() {
               <button
                 key={exp.id}
                 onClick={() => setSelectedExp(index)}
-                className={`w-full text-left p-4 border-2 transition-all duration-300 font-mono group scroll-reveal ${
+                className={`w-full text-left p-4 border-2 transition-all duration-300 font-mono group scroll-reveal-item ${
                   selectedExp === index
                     ? 'border-green-400 bg-green-950/50 text-green-400'
                     : 'border-green-900 bg-green-950/20 text-green-500 hover:border-green-500 hover:bg-green-950/30'
@@ -157,7 +177,7 @@ export default function ExperiencePage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="border-2 border-green-500 bg-black/50 p-8 min-h-[600px] relative overflow-hidden scroll-reveal" style={{ animationDelay: '0.3s' }}>
+            <div className="border-2 border-green-500 bg-black/50 p-8 min-h-[600px] relative overflow-hidden scroll-reveal-item">
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent animate-scan" />
 
               <div className="relative z-10">
@@ -307,9 +327,31 @@ export default function ExperiencePage() {
           }
         }
 
-        .scroll-reveal {
+        @keyframes tear-in {
+          0% {
+            opacity: 0;
+            transform: translateY(30px) rotateX(20deg) scale(0.9);
+            clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+            filter: blur(8px);
+          }
+          60% {
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+          }
+          100% {
+            opacity: 1;
+            transform: translateY(0) rotateX(0) scale(1);
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+            filter: blur(0);
+          }
+        }
+
+        .scroll-reveal-item {
           opacity: 0;
-          animation: unwrap 0.8s ease-out forwards;
+          transform: translateY(50px);
+        }
+
+        .scroll-reveal-item.visible {
+          animation: tear-in 0.9s ease-out forwards;
         }
       `}</style>
     </div>
