@@ -89,7 +89,7 @@ export default function HomePage({ onNavigate }: HomePageProps) {
               <span className="text-green-400 font-bold">Quantum Computing</span>,{' '}
               <span className="text-green-400 font-bold">Generative AI</span>, and{' '}
               <span className="text-green-400 font-bold">student-led research ecosystems</span>.
-              Leading the Microsoft Student Community — Amaravati and founded the Singularity Advanced Student Research Lab at SRM University AP.
+              Founded the Microsoft Student Community — SRMAP and The Singularity Advanced Student Research Lab at SRM University AP.
             </p>
 
             <div className="flex space-x-4">
