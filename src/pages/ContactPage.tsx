@@ -85,7 +85,7 @@ export default function ContactPage() {
 
         <div className="grid lg:grid-cols-2 gap-12">
           <div className="space-y-8">
-            <div className="border-2 border-green-500 bg-black/50 p-8">
+            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal">
               <div className="flex items-center space-x-3 mb-6">
                 <Terminal className="w-6 h-6 text-green-400" />
                 <h2 className="text-2xl font-bold text-green-400 font-mono">CONNECT_ONLINE</h2>
@@ -114,7 +114,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="border-2 border-green-500 bg-black/50 p-8">
+            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal" style={{ animationDelay: '0.2s' }}>
               <div className="flex items-center space-x-3 mb-6">
                 <MapPin className="w-6 h-6 text-green-400" />
                 <h2 className="text-2xl font-bold text-green-400 font-mono">LOCATION</h2>
@@ -128,7 +128,7 @@ export default function ContactPage() {
               </p>
             </div>
 
-            <div className="border-2 border-green-900 bg-green-950/20 p-6">
+            <div className="border-2 border-green-900 bg-green-950/20 p-6 scroll-reveal" style={{ animationDelay: '0.4s' }}>
               <h3 className="text-xl font-bold text-green-400 mb-4 font-mono">RESEARCH_INTERESTS</h3>
               <div className="flex flex-wrap gap-2">
                 {['Quantum Computing', 'AI/ML', 'Cloud Tech', 'Web3', 'CyberSec', 'IoT'].map((interest, i) => (
@@ -142,7 +142,7 @@ export default function ContactPage() {
               </div>
             </div>
 
-            <div className="border-2 border-green-500 bg-black/50 p-8">
+            <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal" style={{ animationDelay: '0.6s' }}>
               <div className="flex items-center space-x-3 mb-6">
                 <Terminal className="w-6 h-6 text-green-400" />
                 <h2 className="text-2xl font-bold text-green-400 font-mono">JOIN_LAB</h2>
@@ -163,7 +163,7 @@ export default function ContactPage() {
             </div>
           </div>
 
-          <div className="border-2 border-green-500 bg-black/50 p-8 animate-fadeIn">
+          <div className="border-2 border-green-500 bg-black/50 p-8 scroll-reveal" style={{ animationDelay: '0.3s' }}>
             <div className="flex items-center space-x-3 mb-6">
               <Send className="w-6 h-6 text-green-400" />
               <h2 className="text-2xl font-bold text-green-400 font-mono">SEND_MESSAGE</h2>
@@ -315,6 +315,24 @@ export default function ContactPage() {
           94% {
             text-shadow: 2px -2px 0 rgba(34, 197, 94, 0.5);
           }
+        }
+
+        @keyframes unwrap {
+          from {
+            opacity: 0;
+            transform: translateY(50px) rotateX(-15deg);
+            filter: blur(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+            filter: blur(0);
+          }
+        }
+
+        .scroll-reveal {
+          opacity: 0;
+          animation: unwrap 0.8s ease-out forwards;
         }
       `}</style>
     </div>

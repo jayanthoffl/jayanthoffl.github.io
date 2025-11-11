@@ -130,11 +130,12 @@ export default function ExperiencePage() {
               <button
                 key={exp.id}
                 onClick={() => setSelectedExp(index)}
-                className={`w-full text-left p-4 border-2 transition-all duration-300 font-mono group ${
+                className={`w-full text-left p-4 border-2 transition-all duration-300 font-mono group scroll-reveal ${
                   selectedExp === index
                     ? 'border-green-400 bg-green-950/50 text-green-400'
                     : 'border-green-900 bg-green-950/20 text-green-500 hover:border-green-500 hover:bg-green-950/30'
                 }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <div className="flex items-start justify-between mb-2">
                   <div className="flex-1">
@@ -156,7 +157,7 @@ export default function ExperiencePage() {
           </div>
 
           <div className="lg:col-span-2">
-            <div className="border-2 border-green-500 bg-black/50 p-8 min-h-[600px] relative overflow-hidden">
+            <div className="border-2 border-green-500 bg-black/50 p-8 min-h-[600px] relative overflow-hidden scroll-reveal" style={{ animationDelay: '0.3s' }}>
               <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-green-500 to-transparent animate-scan" />
 
               <div className="relative z-10">
@@ -291,6 +292,24 @@ export default function ExperiencePage() {
           94% {
             text-shadow: 2px -2px 0 rgba(34, 197, 94, 0.5);
           }
+        }
+
+        @keyframes unwrap {
+          from {
+            opacity: 0;
+            transform: translateY(50px) rotateX(-15deg);
+            filter: blur(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+            filter: blur(0);
+          }
+        }
+
+        .scroll-reveal {
+          opacity: 0;
+          animation: unwrap 0.8s ease-out forwards;
         }
       `}</style>
     </div>

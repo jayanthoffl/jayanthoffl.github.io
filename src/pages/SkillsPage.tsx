@@ -177,7 +177,7 @@ export default function SkillsPage() {
             {researchHighlights.map((research, index) => (
               <div
                 key={index}
-                className="border-2 border-green-500 bg-black/50 p-8 hover:bg-green-950/20 transition-all duration-300 group animate-fadeInUp"
+                className="border-2 border-green-500 bg-black/50 p-8 hover:bg-green-950/20 transition-all duration-300 group scroll-reveal"
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
                 <div className="mb-6">
@@ -230,7 +230,7 @@ export default function SkillsPage() {
             {foundingInitiatives.map((initiative, index) => (
               <div
                 key={index}
-                className="border-2 border-green-500 bg-black/50 overflow-hidden group hover:border-green-400 transition-all duration-300 animate-fadeIn"
+                className="border-2 border-green-500 bg-black/50 overflow-hidden group hover:border-green-400 transition-all duration-300 scroll-reveal"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
                 <div className={`h-2 bg-gradient-to-r ${initiative.gradient}`} />
@@ -279,7 +279,7 @@ export default function SkillsPage() {
             {labDivisions.map((division, index) => (
               <div
                 key={index}
-                className="p-6 border-2 border-green-900 bg-green-950/20 hover:border-green-500 hover:bg-green-950/40 transition-all duration-300 group animate-fadeInUp"
+                className="p-6 border-2 border-green-900 bg-green-950/20 hover:border-green-500 hover:bg-green-950/40 transition-all duration-300 group scroll-reveal"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <division.icon className={`w-12 h-12 ${division.color} mb-4 group-hover:scale-110 transition-transform`} />
@@ -304,7 +304,7 @@ export default function SkillsPage() {
             {coreSkills.map((skillSet, index) => (
               <div
                 key={index}
-                className="border-2 border-green-500 bg-black/50 p-6 animate-fadeInUp"
+                className="border-2 border-green-500 bg-black/50 p-6 scroll-reveal"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <h3 className="text-xl font-bold text-green-400 mb-4 font-mono">
@@ -405,6 +405,24 @@ export default function SkillsPage() {
           94% {
             text-shadow: 2px -2px 0 rgba(34, 197, 94, 0.5);
           }
+        }
+
+        @keyframes unwrap {
+          from {
+            opacity: 0;
+            transform: translateY(50px) rotateX(-15deg);
+            filter: blur(10px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0) rotateX(0);
+            filter: blur(0);
+          }
+        }
+
+        .scroll-reveal {
+          opacity: 0;
+          animation: unwrap 0.8s ease-out forwards;
         }
       `}</style>
     </div>
